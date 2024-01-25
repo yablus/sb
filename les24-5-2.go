@@ -51,11 +51,13 @@ func printResult(sentences []string, chars []rune, slice [][]int) {
 	}
 }
 
+/*
 func printArray(slice [][]int) {
 	for i, _ := range slice {
 		fmt.Println(slice[i])
 	}
 }
+*/
 
 /*
 Задание 2. Поиск символов в нескольких строках
