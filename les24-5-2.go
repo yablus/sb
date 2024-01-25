@@ -11,7 +11,7 @@ func main() {
 	result := make([][]int, len(sentences)*len(chars))
 	result = parseTest(sentences, chars)
 	printResult(sentences, chars, result)
-	printArray(result)
+	//printArray(result)
 }
 
 func parseTest(sentences []string, chars []rune) [][]int {
