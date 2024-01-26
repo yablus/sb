@@ -18,7 +18,7 @@ func main() {
 func find(str string, substr string) bool {
 	bStr := []byte(str)
 	bSubstr := []byte(substr)
-	for i := 0; i < len(bStr); i++ {
+	for i := 0; i < len(bStr)-len(bSubstr)+1; i++ {
 		if bStr[i] == bSubstr[0] {
 			if len(bSubstr) == 1 {
 				return true
