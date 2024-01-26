@@ -8,9 +8,16 @@ import (
 func main() {
 	sentences := []string{"Hello world", "Hello Skillbox", "Привет Мир", "Привет Skillbox"}
 	chars := []rune{'H', 'E', 'L', 'П', 'М', 'S', 'd', 'o', 'w'}
-	result := make([][]int, len(sentences)*len(chars))
-	result = parseTest(sentences, chars)
-	printResult(sentences, chars, result)
+	//chars := []rune{}
+	fmt.Println("Поиск символов в нескольких строках")
+	fmt.Println("=================")
+	if len(sentences)*len(chars) == 0 {
+		fmt.Println("Отсутствуют аргументы поиска")
+	} else {
+		result := make([][]int, len(sentences)*len(chars))
+		result = parseTest(sentences, chars)
+		printResult(sentences, chars, result)
+	}
 	//printArray(result)
 }
 
@@ -38,8 +45,6 @@ func parseTest(sentences []string, chars []rune) [][]int {
 }
 
 func printResult(sentences []string, chars []rune, slice [][]int) {
-	fmt.Println("Поиск символов в нескольких строках")
-	fmt.Println("=================")
 	for i := 0; i < len(slice); i++ {
 		fmt.Println(sentences[i])
 		for j, v := range slice[i] {
@@ -51,13 +56,11 @@ func printResult(sentences []string, chars []rune, slice [][]int) {
 	}
 }
 
-/*
 func printArray(slice [][]int) {
 	for i, _ := range slice {
 		fmt.Println(slice[i])
 	}
 }
-*/
 
 /*
 Задание 2. Поиск символов в нескольких строках
