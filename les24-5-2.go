@@ -18,7 +18,7 @@ func main() {
 		result = parseTest(sentences, chars)
 		printResult(sentences, chars, result)
 	}
-	//printArray(result)
+	/*printArray(result)*/
 }
 
 func parseTest(sentences []string, chars []rune) [][]int {
