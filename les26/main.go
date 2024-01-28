@@ -13,7 +13,7 @@ func main() {
 	//args = []string{"first.txt"}
 	//args = []string{"first.txt", "second.txt"}
 	//args = []string{"first.txt", "second.txt", "result.txt"}
-	//args = []string{"first.txt", "second.txt", "result.txt", "anothertxt.txt"}
+	//args = []string{"first.txt", "second.txt", "result.txt", "another.txt"}
 	fmt.Println(args)
 	fmt.Println("-----------")
 
