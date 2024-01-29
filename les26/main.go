@@ -14,10 +14,11 @@ func main() {
 	//args = []string{"first.txt", "second.txt"}
 	//args = []string{"first.txt", "second.txt", "result.txt"}
 	//args = []string{"first.txt", "second.txt", "result.txt", "another.txt"}
-	fmt.Println(args)
-	fmt.Println("-----------")
+	//fmt.Println(args)
+	//fmt.Println("-----------")
 
 	var content []string
+	var err error
 	var result string
 
 	switch {
@@ -28,43 +29,59 @@ func main() {
 		fmt.Println("Не указано имя файла")
 		break
 	default:
-		content = append(content, parseContent(args[0]))
+		content, err = parseContent(content, args[0])
+		if err != nil {
+			// обработать ошибку или выход
+			// в данном примере нет смысла, т.к. программа небольшая
+		}
 		if len(args) > 1 {
-			content = append(content, parseContent(args[1]))
+			content, err = parseContent(content, args[1])
+			if err != nil {
+				// обработать ошибку или выход
+				// в данном примере нет смысла, т.к. программа небольшая
+			}
 		}
 		result = strings.Join(content, "\n")
 		fmt.Println(result)
 		fmt.Println("-----------")
 		if len(args) > 2 {
-			saveContent(args[2], result)
+			err = saveContent(args[2], result)
+			if err != nil {
+				// обработать ошибку или выход
+				// в данном примере нет смысла, т.к. программа небольшая
+			}
 		}
 	}
 }
 
-func parseContent(fileName string) string {
+func parseContent(content []string, fileName string) ([]string, error) {
 	file, err := os.OpenFile(fileName, os.O_RDONLY, 0)
 	if err != nil {
 		fmt.Println("Ошибка открытия файла", fileName, "для чтения", err)
-		os.Exit(1)
+		//os.Exit(1)
+		return content, err
 	}
 	defer file.Close()
 	b, err := os.ReadFile(fileName)
 	if err != nil {
 		fmt.Println("Ошибка чтения файла", err)
-		os.Exit(1)
+		//os.Exit(1)
+		return content, err
 	}
-	return string(b)
+	return append(content, string(b)), nil
 }
 
-func saveContent(fileName string, content string) {
+func saveContent(fileName string, content string) error {
 	file, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
 		fmt.Println("Ошибка открытия файла", fileName, "для записи", err)
-		os.Exit(1)
+		//os.Exit(1)
+		return err
 	}
 	defer file.Close()
 	file.WriteString(content)
 	fmt.Println("Содержимое файлов записано в", fileName)
+	return nil
 }
 
 /*
