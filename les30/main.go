@@ -43,11 +43,10 @@ func (s *service) GetAll(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	mux := http.NewServeMux()
-	/*
-		mux.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
-			rw.Write([]byte("Hello World!"))
-		})
-	*/
+	mux.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+		rw.Write([]byte("Hello World!"))
+	})
+
 	srv := service{make(map[string]string)}
 	mux.HandleFunc("/create", srv.Create)
 	mux.HandleFunc("/get", srv.GetAll)
